@@ -1,0 +1,105 @@
+body {
+    margin: 0;
+    display: grid;
+    background-color: #DDDDFF;
+    width: 100%;
+}
+
+.container {
+    height: 60px;
+    padding: .8em 3em;
+    background-color: #FCFCFC;
+}
+
+.logo {
+    width: 200px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+nav ul li {
+    float: left;
+    list-style-type: none;
+    padding: 5px;
+}
+
+nav ul li a {
+    color: #707070;
+    text-decoration: none;
+    font-family: 'Nirmala UI';
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.search-container {
+    background-color: #DDDDFF;
+    text-align: center;
+    height: auto;
+}
+
+p {
+    margin: 20px 0 10px;
+    font-size: 22px;
+    font-family: 'Nirmala UI';
+    color: #707070;
+}
+
+.search-icon {
+    width: 22px;
+    position: absolute;
+    padding: 13px 0 0 18px;
+}
+
+input {
+    font-family: 'Nirmala UI';
+    width: 80%;
+    height: 15px;
+    padding: 15px;
+    border-radius: 30px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #707070;
+    font-size: 1em;
+    text-indent: 35px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.footer-container {
+    height: 60px;
+    background-color: #FCFCFC;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+}
+
+footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 3em;
+    padding-bottom: .8em;
+}
+
+footer ul li {
+    float: left;
+    list-style-type: none;
+    padding: 5px;
+}
+
+footer ul li a {
+    color: #707070;
+    text-decoration: none;
+    font-family: 'Nirmala UI';
+}
+
+footer ul li a:hover {
+    text-decoration: underline;
+}
