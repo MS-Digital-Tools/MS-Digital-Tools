@@ -20,20 +20,53 @@ header {
     justify-content: space-between;
 }
 
-nav ul li {
+nav li {
     float: left;
     list-style-type: none;
     padding: 5px;
 }
 
-nav ul li a {
+nav li a {
     color: #707070;
     text-decoration: none;
     font-family: 'Nirmala UI';
 }
 
-nav ul li a:hover {
+nav li a:hover {
     text-decoration: underline;
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: #FCFCFC;
+    font-family: 'Nirmala UI'
+}
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content li a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
 }
 
 .search-container {

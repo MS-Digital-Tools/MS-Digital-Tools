@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>MS Digital Tool Library</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 <body>
     <div class="container">
@@ -13,12 +14,17 @@
             <img src="images/Logo.svg" alt="Logo" class="logo">
 
             <nav>
-                <ul id="nav">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Catagories</a></li>
-                    <li><a href="#">Log In</a></li>
-                </ul>
+                <div class="navbar">
+                        <li><a href="#">Home</a></li>
+                        <div class="dropdown">
+                            <li><a href="#" class="drop-a">Help me with... <i class="fa fa-caret-down"></i></a></li>
+                            <div class="dropdown-content">
+                                <li><a href="#">Link 1</a></li>
+                            </div>
+                        </div>
+                        <li><a href="#">Symptoms <i class="fa fa-caret-down"></i></a></li>
+                        <li><a href="#">Using this Site</a></li>
+                </div>
             </nav>
         </header>
     </div>
