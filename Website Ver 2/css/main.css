@@ -21,6 +21,7 @@ header {
     position: fixed;
     top: 0px;
     left: 0px;
+    z-index: 1;
 }
 
 .header-wrapper {
@@ -71,8 +72,11 @@ header {
 
 .search-container {
     padding-top: 80px;
+    padding-bottom: 30px;
     text-align: center;
     height: auto;
+    border-bottom: 3px double;
+    border-color: #707070;
 }
 
 .search-container p {
@@ -105,11 +109,68 @@ header {
     outline: none;
 }
 
-.test {
+.main-body {
     margin: 0 auto;
-    padding-top: 64px;
+    padding-top: 10px;
     max-width: 1400px;
-    width: 94%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+
+.left-column {
+    width: 66%;
+    padding: 0 20px;
+}
+
+.left-column h3 {
+    font-family: 'Nirmala UI';
+    color: #707070;
+}
+
+.left-column h4 {
+    font-family: 'Nirmala UI';
+    color: #707070;
+}
+
+.left-column h5 {
+    font-family: 'Nirmala UI';
+    color: #707070;
+}
+
+.left-column p {
+    font-family: 'Nirmala UI';
+    color: #707070; 
+}
+
+.left-column li {
+    font-family: 'Nirmala UI';
+    color: #707070;
+}
+
+.right-column {
+    width: 32%;
+    padding: 0px 20px;
+}
+
+.right-column h3 {
+    font-family: 'Nirmala UI';
+    color: #707070;
+}
+
+.right-column h4 {
+    font-family: 'Nirmala UI';
+    color: #707070;
+}
+
+.right-column h5 {
+    font-family: 'Nirmala UI';
+    color: #707070;
+}
+
+.right-column p {
+    font-family: 'Nirmala UI';
+    color: #707070; 
 }
 
 .footer {
