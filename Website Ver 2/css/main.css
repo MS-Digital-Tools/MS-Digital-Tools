@@ -1,3 +1,19 @@
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    padding-bottom: 6rem;
+    min-height: 100%;
+}
+
 header {
     height: 75px;
     width: 100%;
@@ -5,7 +21,12 @@ header {
     position: fixed;
     top: 0px;
     left: 0px;
-    min-width: 870px;
+}
+
+.header-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 1290px;
 }
 
 .logo {
@@ -17,12 +38,6 @@ header {
 .logo p {
     font-family: 'Nirmala UI';
     color: #707070;
-}
-
-.header-wrapper {
-    margin-left: auto;
-    margin-right: auto;
-    min-width: 1290px;
 }
 
 .nav-bar {
@@ -52,4 +67,47 @@ header {
     font-family: 'Nirmala UI';
     color: #707070;
     padding: 24px 20px;
+}
+
+.test {
+    margin: 0 auto;
+    padding-top: 64px;
+    max-width: 640px;
+    width: 94%;
+}
+
+.footer {
+    position: absolute;
+    height: 75px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 15px 20px;
+    background-color: #F2F2FE;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer .BU-logo img {
+    width: 200px;
+}
+
+.footer .tc-pp {
+    padding-top: 2px;
+}
+
+.footer li {
+    list-style-type: none;
+    float: left;
+    padding: 10px;
+}
+
+.footer li a {
+    color: #707070;
+    text-decoration: none;
+    font-family: 'Nirmala UI';
+}
+
+.footer li a:hover {
+    text-decoration: underline;
 }
