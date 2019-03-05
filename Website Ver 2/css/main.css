@@ -1,0 +1,55 @@
+header {
+    height: 75px;
+    width: 100%;
+    background-color: #F2F2FE;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    min-width: 870px;
+}
+
+.logo {
+    float: left;
+    padding: 10px 20px;
+    position: relative;
+}
+
+.logo p {
+    font-family: 'Nirmala UI';
+    color: #707070;
+}
+
+.header-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 1290px;
+}
+
+.nav-bar {
+    float: left;
+    padding: 15px 20px;
+    position: relative;
+}
+
+.nav-bar li {
+    float: left;
+    list-style-type: none;
+    padding: 10px;
+}
+
+.nav-bar li a {
+    text-decoration: none;
+    font-family: 'Nirmala UI';
+    color: #707070;
+}
+
+.nav-bar li a:hover {
+    text-decoration: underline;
+}
+
+.login {
+    float: right;
+    font-family: 'Nirmala UI';
+    color: #707070;
+    padding: 24px 20px;
+}
