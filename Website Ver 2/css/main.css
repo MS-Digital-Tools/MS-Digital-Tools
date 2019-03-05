@@ -75,8 +75,8 @@ header {
     padding-bottom: 30px;
     text-align: center;
     height: auto;
-    border-bottom: 3px double;
-    border-color: #707070;
+    border-bottom: 1px solid;
+    border-color: lightgray;
 }
 
 .search-container p {
@@ -192,8 +192,20 @@ header {
     width: 200px;
 }
 
-.footer .tc-pp {
+.footer .right-footer {
     padding-top: 2px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.social-media {
+    padding-top: 7px;
+    padding-right: 10px;
+}
+
+.social-media a img {
+    width: 30px;
+    padding-left: 5px;
 }
 
 .footer li {
