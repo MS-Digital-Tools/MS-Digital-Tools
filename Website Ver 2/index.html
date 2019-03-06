@@ -11,14 +11,14 @@
 <body>
     <header>
         <div class="header">
-            <div class="logo"><p>MS Digital Tools</p></div>
+            <div class="logo"><img src="images/MSDigitalTools.svg" alt="MS Digital Tools"></div>
 
             <div class="header-wrapper">
                 <nav>
                     <div class="nav-bar">
                         <li><a href="#">Home</a></li>
                         <div class="hmw-dropdown">
-                            <li><a href="#" class="hmw-drop">Help me with... <i class="fa fa-caret-down"></i></a></li>
+                            <li class="hmw-drop"><a href="#">Help me with... <i class="fa fa-caret-down"></i></a></li>
                             <div class="hmw-dropdown-content">
                                 <ul>
                                     <li><a href="#">Health & Fitness</a></li> 
@@ -33,12 +33,13 @@
                             </div>
                         </div>
                         <div class="symptoms-dropdown">
-                            <li><a href="#">Symptoms <i class="fa fa-caret-down"></i></a></li>
+                            <li class="symptoms-drop"><a href="#">Symptoms <i class="fa fa-caret-down"></i></a></li>
                             <div class="symptoms-dropdown-content">
                                 <ul>
                                     <li><a href="#">Anxiety & Depression</a></li>
                                     <li><a href="#">Back/Spine</a></li>
-                                    <li><a href="#">Balance & Co-ordination</a></li>                                    <li><a href="#">Bladder & Bowels</a></li>
+                                    <li><a href="#">Balance & Co-ordination</a></li>                                    
+                                    <li><a href="#">Bladder & Bowels</a></li>
                                     <li><a href="#">Cognition</a></li>
                                     <li><a href="#">Fatigue</a></li>
                                     <li><a href="#">Light Sensitivity</a></li>
@@ -62,12 +63,15 @@
                         <li><a href="#">Suggest a Tool</a></li>
                     </div>
                 </nav>
-                <div class="login">
-                    <form action="#">
-                        Username: <input type="text">
-                        Password: <input type="text">
-                        <input type="submit">
-                    </form>
+                <div class="admin-login">
+                    <p class="admin-login-drop">Admin Login</p>
+                    <div class="admin-login-dropdown">
+                        <form action="#">
+                            <p>Username:</p><input type="text" class="username">
+                            <p>Password:</p><input type="text" class="password">
+                            <input type="submit">
+                        </form>
+                    </div>
                 </div>
             </div>
 
@@ -127,7 +131,7 @@
             <p>
                 We are designing and creating the MS Digital Tools search platform, but we need your input to move forward. 
                 We have created two questionnaires, one for those with MS and their carers and one for Health Care Professionals (HCPs).  
-                You may complete them anonymously, with an option to get more involved with the development body
+                You may complete them anonymously, with an option to get more involved with the development body.
             </p>
             <h4>Those with MS and carers</h5>
             <p>

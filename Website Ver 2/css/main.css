@@ -22,6 +22,8 @@ header {
     top: 0px;
     left: 0px;
     z-index: 1;
+    border-bottom: 1px solid;
+    border-color: lightgray;
 }
 
 .header-wrapper {
@@ -36,9 +38,9 @@ header {
     position: relative;
 }
 
-.logo p {
-    font-family: 'Nirmala UI';
-    color: #707070;
+.logo img {
+    width: 250px;
+    padding-top: 12px;
 }
 
 .nav-bar {
@@ -59,8 +61,9 @@ header {
     color: #707070;
 }
 
-.nav-bar li a:hover {
+.nav-bar li a:hover{
     text-decoration: underline;
+    color: #F07850;
 }
 
 .hmw-dropdown {
@@ -97,6 +100,10 @@ header {
 .hmw-dropdown:hover .hmw-dropdown-content {
     display: block;
     top: 60px;
+}
+
+.hmw-dropdown:hover .hmw-drop a {
+    color: #F07850;
 }
 
 .symptoms-dropdown {
@@ -136,20 +143,82 @@ header {
     top: 60px;
 }
 
-.login {
+.symptoms-dropdown:hover .symptoms-drop a {
+    color: #F07850;
+}
+
+.admin-login {
     float: right;
+    padding: 12px 20px;
+    overflow: hidden;
+}
+
+.admin-login p {
     font-family: 'Nirmala UI';
     color: #707070;
-    padding: 24px 20px;
+    cursor: pointer;
+}
+
+.admin-login-drop:hover{
+    text-decoration: underline;
+    color: #F07850;
+}
+
+.admin-login:hover .admin-login-drop {
+    color: #F07850;
+}
+
+.admin-login-dropdown {
+    display: none;
+    position: absolute;
+    background-color: #F9F9F9;
+    width: 270px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border: 2px solid;
+    border-color: #707070;
+    padding: 10px 10px;
+    right: 15px;
+}
+
+.admin-login-dropdown form {
+    float: none;
+    font-family: 'Nirmala UI';
+    color: #707070;
+    display: block;
+    text-align: center;
+}
+
+.admin-login-dropdown p {
+    margin: 0;
+    padding: 0;
+    cursor: default;
+}
+
+.admin-login-dropdown .username {
+    width: 80%;
+}
+
+.admin-login-dropdown .password {
+    width: 80%;
+    margin-bottom: 5px;
+}
+
+.admin-login:hover .admin-login-dropdown {
+    display: block;
 }
 
 .search-container {
+    position: fixed;
     padding-top: 80px;
     padding-bottom: 30px;
     text-align: center;
     height: auto;
     border-bottom: 1px solid;
     border-color: lightgray;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 .search-container p {
@@ -157,6 +226,7 @@ header {
     font-size: 22px;
     font-family: 'Nirmala UI';
     color: #707070;
+    cursor: default;
 }
 
 .search-icon {
@@ -184,7 +254,7 @@ header {
 
 .main-body {
     margin: 0 auto;
-    padding-top: 10px;
+    padding-top: 210px;
     max-width: 1400px;
     width: 80%;
     display: flex;
@@ -254,6 +324,8 @@ header {
     left: 0;
     padding: 15px 20px;
     background-color: #F2F2FE;
+    border-top: 1px solid;
+    border-color: lightgray;
 }
 
 .footer .footer-wrapper {
@@ -271,12 +343,12 @@ header {
     justify-content: flex-end;
 }
 
-.social-media {
+.footer .social-media {
     padding-top: 7px;
     padding-right: 10px;
 }
 
-.social-media a img {
+.footer .social-media a img {
     width: 30px;
     padding-left: 5px;
 }
@@ -295,4 +367,5 @@ header {
 
 .footer li a:hover {
     text-decoration: underline;
+    color: #F07850;
 }
