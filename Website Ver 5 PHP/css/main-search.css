@@ -1,0 +1,100 @@
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    padding-bottom: 6rem;
+    min-height: 100%;
+    background-color: white;
+}
+
+.search-container {
+    position: fixed;
+    padding-top: 80px;
+    padding-bottom: 20px;
+    height: auto;
+    border-bottom: 2px solid;
+    border-color: #36A8DE;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(88, 81, 81, 0.2);
+}
+
+.search-container p {
+    text-align: center;
+    margin: 20px 0 10px;
+    font-size: 22px;
+    font-family: 'Nirmala UI';
+    color: #707070;
+    cursor: default;
+}
+
+.search-icon {
+    margin-left: 300px;
+    width: 31px;
+    position: absolute;
+    padding: 6px 0 0 10px;
+}
+
+.search-container select {
+    position: absolute;
+    font-size: 16px;
+    text-align-last: center;
+    height: 32px;
+    width: 110px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-color: #707070;
+    border-left-style: none;
+}
+
+.search-container select:focus {
+    outline: 0;
+}
+
+.search-container input {
+    font-family: 'Nirmala UI';
+    margin-left: 300px;
+    width: 780px;
+    height: 15px;
+    padding: 15px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #707070;
+    font-size: 1em;
+    text-indent: 35px;
+}
+
+.search-container input:focus {
+    outline: none;
+}
+
+.main-body {
+    margin: 0 auto;
+    padding-top: 200px;
+    max-width: 1400px;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: black;
+}
+
+.left-column {
+    width: 66%;
+    padding: 0 20px;
+}
+
+.right-column {
+    width: 32%;
+    padding: 0px 20px;
+}

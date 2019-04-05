@@ -1,0 +1,49 @@
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    padding-bottom: 6rem;
+    min-height: 100%;
+}
+
+.main-body {
+    margin: 0 auto;
+    width: 80%;
+    padding-top: 90px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+}
+
+.questionnaire-buttons {
+    margin: 0 auto;
+    width: 60%;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.questionnaire-buttons button {
+    width: 150px;
+    height: 50px;
+    padding-top: 2px;
+    padding-bottom: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid #707070;
+    cursor: pointer;
+}
+
+.cog-img {
+    padding-top: 20px;
+    width: 50px;
+}
