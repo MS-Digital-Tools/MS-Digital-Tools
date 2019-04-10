@@ -1,5 +1,5 @@
 header {
-    height: 88px;
+    height: 95px;
     width: 100%;
     background-color: white;
     position: fixed;
@@ -31,7 +31,7 @@ header {
 }
 
 .nav-bar {
-    padding-top: 25px;
+    padding-top: 30px;
 }
 
 .nav-bar li {
@@ -47,7 +47,7 @@ header {
 }
 
 .social-media {
-    padding: 26px;
+    padding: 30px;
 }
 
 .social-media a img {
