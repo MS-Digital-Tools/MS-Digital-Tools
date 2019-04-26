@@ -121,24 +121,41 @@
                                             ?>
                                         </p>
                                     </div>
-                                    <?php
-                                        if ($tool['tool_type'] == "app") {
-
-                                    ?>
-                                    <div class="tool-app row">
-                                        <img class="app-store" src="images/appstore.svg" alt="app store">
-                                        <img class="google-play" src="images/googleplay.svg" alt="google play">
+                                    <div class="tool-app row pb-3">
+                                        <?php
+                                            $toolURL = $tool['tool_url'];
+                                            if ($tool['tool_type'] == "iOS") {
+                                        ?>
+                                        <a href="<?php echo $toolURL ?>" target="_blank"><img src="images/appstore.svg" alt="App Store"></a>
+                                        <?php
+                                            }
+                                            else if ($tool['tool_type'] == "Android") {
+                                        ?>
+                                        <a href="<?php echo $toolURL ?>" target="_blank"><img src="images/googleplay.svg" alt="Google Play"></a>
+                                        <?php
+                                            }
+                                            else if ($tool['tool_type'] == "Video") {
+                                        ?>
+                                        <p>Link to Video <a href="<?php echo $toolURL ?>" target="_blank"><img src="images/play-button.svg" alt="Play Button"></p></a>
+                                        <?php
+                                            }
+                                            else if ($tool['tool_type'] == "PDF") {
+                                        ?>
+                                        <p>Link to PDF <a href="<?php echo $toolURL ?>" target="_blank"><img src="images/pdf.svg" alt="PDF"></p></a>
+                                        <?php
+                                            }
+                                            else if ($tool['tool_type'] == "Chatbot") {
+                                        ?>
+                                        <p>Link to Chatbot <a href="<?php echo $toolURL ?>" target="_blank"><img src="images/robot.svg" alt="Chatbot"></p></a>
+                                        <?php
+                                            }
+                                            else {
+                                        ?>
+                                        <p><a href="<?php echo $toolURL ?>" target="_blank"><?php echo $tool['tool_name'] ?></a></p>
+                                        <?php
+                                            }
+                                        ?>
                                     </div>
-                                    <?php
-                                        }
-                                        else if ($tool['tool_type'] == "link") {
-                                    ?>
-                                    <div class="tool-link row">
-                                        <p><a href="<?php echo $tool_url['tool_url']; ?>">Click here for Link</a></p>
-                                    </div>
-                                    <?php
-                                        }
-                                    ?>
                                 </div>
                             </div>
                         </div>
