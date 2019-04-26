@@ -5,19 +5,14 @@ header {
     position: fixed;
     top: 0px;
     left: 0px;
-    z-index: 1;
+    z-index: 9;
     border-bottom: 2px solid;
     border-color: #36A8DE;
 }
 
 .header {
-    display: flex;
-    justify-content: space-between;
-    min-width: 1400px;
-}
-
-.msdt-logo {
-    padding-left: 35px;
+    max-width: 95%;
+    padding: 0 15px;
 }
 
 .msdt-logo img {
@@ -25,13 +20,7 @@ header {
 }
 
 .header-wrapper {
-    display: flex;
-    flex-direction: row;
-    padding: 0 15px;
-}
-
-.nav-bar {
-    padding-top: 30px;
+    padding-left: 15px;
 }
 
 .nav-bar li {
@@ -44,10 +33,6 @@ header {
     color: #434343;
     text-decoration: none;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-.social-media {
-    padding: 30px;
 }
 
 .social-media a img {
@@ -93,9 +78,26 @@ header {
 
 .symptoms-dropdown:hover .symptoms-dropdown-content {
     display: block;
-    top: 65px;
+    top: 50px;
 }
 
 .symptoms-dropdown:hover .symptoms-drop a {
     color: #F07850;
+}
+
+@media (max-width:991px) {
+    .header-wrapper {
+        background: white;
+        border-bottom: 2px solid #ececec;
+    }
+}
+
+@media (max-width:768px) {
+    header {
+        height: 80px;
+    }
+
+    .msdt-logo img {
+        width: 250px;
+    }
 }

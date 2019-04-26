@@ -21,49 +21,31 @@
 
     <script>
         $(function() {
-            var input = $("#input");
-            var searchBy = $('#search-by');
-            searchBy.on("change", function() {
-                input.val("");
-                var type = $(this).val();
-                $(input).autocomplete({
-                    source: "search.php?type="+type,
-                    create: function(){
-                        $(this).data('ui-autocomplete')._renderMenu = function( ul, items ) {
-                            var menu = this,
-                            currentCategory = "";
-                            $.each( items, function( index, item ) {
-                                var li;
-                                if ( item.category != currentCategory ) {
-                                    ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
-                                    currentCategory = item.category;
-                                }
-                                li = menu._renderItemData( ul, item );
-                            });
-                        }
-                    }
-                });
+            $("#search_input").autocomplete({
+                source: "search.php",
             });
-            searchBy.trigger("change");
         });
     </script>
 
-    <form action="search-result.php" method="post">
+    <form action="" method="POST">
         <div class="search-container">
             <p>What do you need help with?</p>
             <img src="images/search.svg" alt="Search Icon" class="search-icon">
-            <input type="text" id="input" placeholder="" name="input">
-            <select name="search_by" id="search-by">
-                <option value="all">All</option>
+            <input type="text" id="symptom_input" placeholder="">
+            <select name="search-by">
                 <option value="symptom">Symptom</option>
                 <option value="language">Language</option>
                 <option value="ms-type">MS Type</option>
                 <option value="tool-type">Tool Type</option>
             </select>
-
-            <button type="submit" class="btn">Submit</button>
         </div>
     </form>
+
+    <?php   
+        session_start();
+        $searchBy = $_POST['search-by'];
+        $_SESSION['search_type'] = $searchBy;
+    ?>
 
     <div class="main-body">
         <div class="left-column">

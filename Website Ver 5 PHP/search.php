@@ -43,17 +43,29 @@
         }
     }
     else if ($queryType == "tool-type") {
+        $searchQuery = $db->query("SELECT * FROM `Tool_Assets` WHERE tool_type LIKE '%".$searchTerm."%'");
         
+        if($searchQuery->num_rows > 0) {
+            while($row = $searchQuery->fetch_assoc()) {
+                $data['result_id'] = '';
+                $data['value'] = $row['tool_type'];
+                $data['category'] = '';
+                array_push($resultData, $data);
+            }
+        }
 
+        $resultData = array_unique($resultData);
     }
     else if ($queryType == "all") {
         $tempSymptom = array();
         $tempLanguage = array();
         $tempMSType = array();
+        $tempToolType = array();
 
         $searchQuerySymptom = $db->query("SELECT * FROM Symptoms WHERE symptom_name LIKE '%".$searchTerm."%' ORDER BY symptom_name ASC");
         $searchQueryLanguage = $db->query("SELECT * FROM `Language` WHERE language_name LIKE '%".$searchTerm."%' ORDER BY language_name ASC");
         $searchQueryMSType = $db->query("SELECT * FROM MS_Type WHERE ms_type_name LIKE '%".$searchTerm."%' ORDER BY ms_type_name ASC");
+        $searchQueryToolType = $db->query("SELECT * FROM `Tool_Assets` WHERE tool_type LIKE '%".$searchTerm."%'");
         
 
         while($row = $searchQuerySymptom->fetch_assoc()) {
@@ -76,8 +88,15 @@
             $data['category'] = 'MS type';
             array_push($tempMSType, $data);
         }
+        
+        while($row = $searchQueryToolType->fetch_assoc()) {
+            $data['result_id'] = '';
+            $data['value'] = $row['tool_type'];
+            $data['category'] = 'tool type';
+            array_push($tempToolType, $data);
+        }
 
-        $resultData = array_merge($tempSymptom, $tempLanguage, $tempMSType);
+        $resultData = array_merge($tempSymptom, $tempLanguage, $tempMSType, array_unique($tempToolType));
 
     }
 

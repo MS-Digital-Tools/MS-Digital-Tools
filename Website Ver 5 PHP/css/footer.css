@@ -10,11 +10,6 @@
     border-color: #36A8DE;
 }
 
-.footer .footer-wrapper {
-    display: flex;
-    justify-content: space-between;
-}
-
 .footer .BU-logo img {
     padding-top: 15px;
     width: 200px;
@@ -22,6 +17,7 @@
 
 .right-footer {
     padding-top: 5px;
+    margin: 0;
 }
 
 .footer li {
