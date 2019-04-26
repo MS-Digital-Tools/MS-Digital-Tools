@@ -65,6 +65,10 @@ body {
     padding-right: 20px;
 }
 
+.tool-app img {
+    padding-bottom: 1rem;
+}
+
 @media (max-width:768px) {
     .main-body {
         padding-top: 70px;

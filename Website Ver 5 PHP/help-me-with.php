@@ -1,81 +1,49 @@
 <?php 
     $db = mysqli_connect("89.187.86.8", "msdigita_main_php", "q1w2e3r417", "msdigita_main");
+    $hmwIdent = $_REQUEST['ident'];
+    //All tools with ident ^^
+    $hmwToolsQuery = $db->query("SELECT * FROM `Tools` a, `Tool_Sup_Cat` b, `Support_Cat` c, `Tool_Assets` d WHERE a.`tool_id`=b.`tool_id`
+     AND b.`sup_cat_id`=c.`sup_cat_id` AND a.`tool_id`=d.`tool_id` AND c.`sup_cat_ident`='".$hmwIdent."'");
+    $hmwTitleQuery = $db->query("SELECT sup_cat_name FROM `Support_Cat` WHERE `sup_cat_ident`='".$hmwIdent."'");
+    $hmwTitle = mysqli_fetch_assoc($hmwTitleQuery);
 
-    $searchTerm = $_POST['input'];
-    $queryType = $_POST['search_by'];
     $resultData = array();
 
-    if ($queryType == "symptom") {
-        $searchQuery = $db->query("SELECT * FROM `Tools` a, `Tool_Symptoms` b, `Symptoms` c, `Tool_Assets` d WHERE a.`tool_id`=b.`tool_id` AND b.`symptom_id`=c.`symptom_id` AND a.`tool_id`=d.`tool_id` AND c.`symptom_name` LIKE '%".$searchTerm."%'");
-    }
-    else if ($queryType == "language") {
-        $searchQuery = $db->query("SELECT * FROM `Tools` a, `Tool_Language` b, `Language` c, `Tool_Assets` d WHERE a.`tool_id`=b.`tool_id` AND b.`language_id`=c.`language_id` AND a.`tool_id`=d.`tool_id` AND c.`language_name` LIKE '%".$searchTerm."%'");
-    }
-    else if ($queryType == "ms-type") {
-        $searchQuery = $db->query("SELECT * FROM `Tools` a, `Tool_MS_Type` b, `MS_Type` c, `Tool_Assets` d WHERE a.`tool_id`=b.`tool_id` AND b.`ms_type_id`=c.`ms_type_id` AND a.`tool_id`=d.`tool_id` AND c.`ms_type_name` LIKE '%".$searchTerm."%'");
-    }
-    else if ($queryType == "tool-type") {
-        $searchQuery = $db->query("SELECT * FROM `Tools` a, `Tool_Assets` b WHERE a.`tool_id`=b.`tool_id` AND b.`tool_type` LIKE '%".$searchTerm."%'");
-    }
-    else if ($queryType == "all") {
-        $tempResultArray = array();
-
-        $searchQuerySymptom = $db->query("SELECT * FROM `Tools` a, `Tool_Symptoms` b, `Symptoms` c, `Tool_Assets` d WHERE a.`tool_id`=b.`tool_id` AND b.`symptom_id`=c.`symptom_id` AND a.`tool_id`=d.`tool_id` AND c.`symptom_name` LIKE '%".$searchTerm."%'");
-        $searchQueryLanguage = $db->query("SELECT * FROM `Tools` a, `Tool_Language` b, `Language` c, `Tool_Assets` d WHERE a.`tool_id`=b.`tool_id` AND b.`language_id`=c.`language_id` AND a.`tool_id`=d.`tool_id` AND c.`language_name` LIKE '%".$searchTerm."%'");
-        $searchQueryMSType = $db->query("SELECT * FROM `Tools` a, `Tool_MS_Type` b, `MS_Type` c, `Tool_Assets` d WHERE a.`tool_id`=b.`tool_id` AND b.`ms_type_id`=c.`ms_type_id` AND a.`tool_id`=d.`tool_id` AND c.`ms_type_name` LIKE '%".$searchTerm."%'");
-        $searchQueryNameDescrip = $db->query("SELECT * FROM `Tools` a, `Tool_Assets` b WHERE a.`tool_id`=b.`tool_id` AND (tool_description LIKE '%".$searchTerm."%' OR tool_name LIKE '%".$searchTerm."%') ORDER BY tool_name ASC");
-        $searchQueryToolType = $db->query("SELECT * FROM `Tools` a, `Tool_Assets` b WHERE a.`tool_id`=b.`tool_id` AND b.`tool_type` LIKE '%".$searchTerm."%'");
-
-        while($row = $searchQuerySymptom->fetch_assoc()) {
-            array_push($tempResultArray, $row);
-        }
-
-        while($row = $searchQueryLanguage->fetch_assoc()) {
-            array_push($tempResultArray, $row);
-        }
-
-        while($row = $searchQueryMSType->fetch_assoc()) {
-            array_push($tempResultArray, $row);
-        }
-
-        while($row = $searchQueryNameDescrip->fetch_assoc()) {
-            array_push($tempResultArray, $row);
-        }
-
-        while($row = $searchQueryToolType->fetch_assoc()) {
-            array_push($tempResultArray, $row);
-        }
-
-        $resultData = $tempResultArray;
-
-    }
-
-    if ($queryType != "all"){
-        if($searchQuery->num_rows > 0) {
-            while($row = $searchQuery->fetch_assoc()) {
-                array_push($resultData, $row);
-            }
+    if($hmwToolsQuery->num_rows > 0) {
+        while($row = $hmwToolsQuery->fetch_assoc()) {
+            array_push($resultData, $row);
         }
     }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Search Results</title>
+    <title>
+        <?php
+            echo $hmwTitle['sup_cat_name'];   
+        ?>
+        - MSDT
+    </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/search-result.css">
+    <link rel="stylesheet" href="css/help-me-with.css">
 </head>
 <body>
-
     <?php
         include('includes/html/header.inc.php');
     ?>
+
+    <div class="breadcrumbs container-fluid">
+        <div class="row justify-content-center">
+            <div class="breadcrumb-text col-12 justify-content-start">
+                <p><a href="index.php">Home</a> <i class="fa fa-caret-right"></i> <?php echo $hmwTitle['sup_cat_name']; ?></p>
+            </div>
+        </div>
+    </div>
 
     <div class="main-body col-11">
         <div class="row">
@@ -85,7 +53,7 @@
                 ?>
                 <div class="tool-container container">
                     <div class="row">
-                        <div class="d-flex">
+                    <div class="d-flex">
                             <div class="tool-image flex-fill">
                                 <?php
                                     $toolImage = $tool['tool_image_url'];
@@ -126,27 +94,27 @@
                                             $toolURL = $tool['tool_url'];
                                             if ($tool['tool_type'] == "iOS") {
                                         ?>
-                                        <a href="<?php echo $toolURL ?>" target="_blank"><img src="images/appstore.svg" alt="App Store"></a>
+                                        <a href="<?php echo $toolURL ?>" target="_blank"><img class="app-store" src="images/appstore.svg" alt="App Store"></a>
                                         <?php
                                             }
                                             else if ($tool['tool_type'] == "Android") {
                                         ?>
-                                        <a href="<?php echo $toolURL ?>" target="_blank"><img src="images/googleplay.svg" alt="Google Play"></a>
+                                        <a href="<?php echo $toolURL ?>" target="_blank"><img class="app-store" src="images/googleplay.svg" alt="Google Play"></a>
                                         <?php
                                             }
                                             else if ($tool['tool_type'] == "Video") {
                                         ?>
-                                        <p>Link to Video <a href="<?php echo $toolURL ?>" target="_blank"><img src="images/play-button.svg" alt="Play Button"></p></a>
+                                        <p>Link to Video <a href="<?php echo $toolURL ?>" target="_blank"><img class="image" src="images/play-button.svg" alt="Play Button"></p></a>
                                         <?php
                                             }
                                             else if ($tool['tool_type'] == "PDF") {
                                         ?>
-                                        <p>Link to PDF <a href="<?php echo $toolURL ?>" target="_blank"><img src="images/pdf.svg" alt="PDF"></p></a>
+                                        <p>Link to PDF <a href="<?php echo $toolURL ?>" target="_blank"><img class="image" src="images/pdf.svg" alt="PDF"></p></a>
                                         <?php
                                             }
                                             else if ($tool['tool_type'] == "Chatbot") {
                                         ?>
-                                        <p>Link to Chatbot <a href="<?php echo $toolURL ?>" target="_blank"><img src="images/robot.svg" alt="Chatbot"></p></a>
+                                        <p>Link to Chatbot <a href="<?php echo $toolURL ?>" target="_blank"><img class="image" src="images/robot.svg" alt="Chatbot"></p></a>
                                         <?php
                                             }
                                             else {
@@ -166,9 +134,7 @@
                 ?>
             </div>
             <div class="right-column col-md-4 .d-none .d-sm-block">
-                <?php
-                    echo $symptom_details['symptom_description'];
-                ?>
+
             </div>
         </div>
     </div>
@@ -176,7 +142,7 @@
     <?php
         include('includes/html/footer.inc.php');
     ?>
-    
+
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

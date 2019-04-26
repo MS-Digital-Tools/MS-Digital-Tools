@@ -15,7 +15,7 @@
                 <div class="nav-bar navbar-nav">
                     <li class="nav-item"><a href="index.php">Home</a></li>
                     <div class="symptoms-dropdown">
-                        <li class="symptoms-drop"><a href="#">Symptoms <i class="fa fa-caret-down"></i></a></li>
+                        <li class="symptoms-drop nav-item"><a href="#">Symptoms <i class="fa fa-caret-down"></i></a></li>
                         <div class="symptoms-dropdown-content">
                             <ul>
                                 <?php
@@ -23,6 +23,22 @@
                                     while($symptom = mysqli_fetch_assoc($symp_query)) {
                                 ?>
                                 <li><a href="symptom.php?ident=<?php echo $symptom['symptom_ident'];?>"> <?php echo $symptom['symptom_name'];?> </a></li>
+                                <?php
+                                    }
+                                ?>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="hmw-dropdown">
+                        <li class="hmw-drop nav-item"><a href="#">Help me with... <i class="fa fa-caret-down"></i></a></li>
+                        <div class="hmw-dropdown-content">
+                            <ul>
+                                <?php
+                                    $hmw_query = $db->query("SELECT * FROM `Support_Cat` ORDER BY sup_cat_name");
+                                    while($hmw = mysqli_fetch_assoc($hmw_query)) {
+                                ?>
+                                <li><a href="help-me-with.php?ident=<?php echo $hmw['sup_cat_ident'];?>"> <?php echo $hmw['sup_cat_name'];?> </a></li>
                                 <?php
                                     }
                                 ?>

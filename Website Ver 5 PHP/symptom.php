@@ -2,16 +2,22 @@
     $db = mysqli_connect("89.187.86.8", "msdigita_main_php", "q1w2e3r417", "msdigita_main");
     $symp_ident = $_REQUEST['ident'];
     //All tools with ident ^^
-    $symp_tools_query = $db->query("SELECT * FROM `Tools` a, `Tool_Symptoms` b, `Symptoms` c
-    WHERE a.`tool_id`=b.`tool_id` AND b.`symptom_id`=c.`symptom_id` AND c.`symptom_ident`='".$symp_ident."'");
-    //Symptom information
-    $symp_detail_query = $db->query("SELECT * FROM `Symptoms` WHERE `symptom_ident`='".$symp_ident."'");
+    $symp_tools_query = $db->query("SELECT * FROM `Tools` a, `Tool_Symptoms` b, `Symptoms` c, `Tool_Assets` d WHERE a.`tool_id`=b.`tool_id`
+     AND b.`symptom_id`=c.`symptom_id` AND a.`tool_id`=d.`tool_id` AND c.`symptom_ident`='".$symp_ident."'");
+    $symp_detail_query = $db->query("SELECT `symptom_description` FROM `Symptoms` WHERE `symptom_ident`='".$symp_ident."'");
     $symptom_details = mysqli_fetch_assoc($symp_detail_query);
+    $symp_url_query = $db->query("SELECT `symptom_more_info_link` FROM `Symptoms` WHERE `symptom_ident`='".$symp_ident."'");
+    $symptom_info_url = mysqli_fetch_assoc($symp_url_query);
     $symp_title_query = $db->query("SELECT symptom_name FROM `Symptoms` WHERE `symptom_ident`='".$symp_ident."'");
     $symptom_title = mysqli_fetch_assoc($symp_title_query);
-    //Wrong
-    $tools_url_query = $db->query("SELECT * FROM `Tools_Urls` WHERE `tool_id`='".$tool_id."'");
-    $tool_url = mysqli_fetch_assoc($tools_url_query);
+
+    $resultData = array();
+
+    if($symp_tools_query->num_rows > 0) {
+        while($row = $symp_tools_query->fetch_assoc()) {
+            array_push($resultData, $row);
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,56 +53,81 @@
         <div class="row">
             <div class="left-column col-md-8 col-sm-12">
                 <?php
-                    while($symp_tool = mysqli_fetch_assoc($symp_tools_query)) {
+                    foreach($resultData as $tool) {
                 ?>
                 <div class="tool-container container">
                     <div class="row">
-                        <div class="d-flex">
+                    <div class="d-flex">
                             <div class="tool-image flex-fill">
-                                <img src="images/icon.png" alt="icon">
+                                <?php
+                                    $toolImage = $tool['tool_image_url'];
+
+                                    if ($toolImage == NULL) {
+                                        $toolImage = 'images/icon.png';
+                                    }
+
+                                ?>
+                                <img src="<?php echo $toolImage ?>" alt="icon">
                             </div>
                             <div class="flex-fill pt-2 pl-2">
                                 <div class="tool-info">
-                                    <h3 class="tool-name row">
+                                    <h3 class="tool-name row pr-4">
                                         <?php
-                                            echo $symp_tool['tool_name'];
+                                            echo $tool['tool_name'];
                                         ?>
                                     </h3>
                                     <p class="description row pr-4">
                                         <?php
-                                            echo $symp_tool['tool_description'];
+                                            echo $tool['tool_description'];
                                         ?>
                                     </p>
                                     <div class="tool-price-owner row">
                                         <p class="price">
                                             <?php
-                                                echo $symp_tool['tool_price'];
+                                                echo $tool['tool_price'];
                                             ?>
                                         </p>
                                         <p class="owner">
                                             <?php
-                                                echo $symp_tool['tool_owner'];
+                                                echo $tool['tool_owner'];
                                             ?>
                                         </p>
                                     </div>
-                                    <?php
-                                        if ($symp_tool['tool_type'] == "app") {
-
-                                    ?>
                                     <div class="tool-app row">
-                                        <img class="app-store" src="images/appstore.svg" alt="app store">
-                                        <img class="google-play" src="images/googleplay.svg" alt="google play">
+                                        <?php
+                                            $toolURL = $tool['tool_url'];
+                                            if ($tool['tool_type'] == "iOS") {
+                                        ?>
+                                        <a href="<?php echo $toolURL ?>" target="_blank"><img class="app-store" src="images/appstore.svg" alt="App Store"></a>
+                                        <?php
+                                            }
+                                            else if ($tool['tool_type'] == "Android") {
+                                        ?>
+                                        <a href="<?php echo $toolURL ?>" target="_blank"><img class="app-store" src="images/googleplay.svg" alt="Google Play"></a>
+                                        <?php
+                                            }
+                                            else if ($tool['tool_type'] == "Video") {
+                                        ?>
+                                        <p>Link to Video <a href="<?php echo $toolURL ?>" target="_blank"><img class="image" src="images/play-button.svg" alt="Play Button"></p></a>
+                                        <?php
+                                            }
+                                            else if ($tool['tool_type'] == "PDF") {
+                                        ?>
+                                        <p>Link to PDF <a href="<?php echo $toolURL ?>" target="_blank"><img class="image" src="images/pdf.svg" alt="PDF"></p></a>
+                                        <?php
+                                            }
+                                            else if ($tool['tool_type'] == "Chatbot") {
+                                        ?>
+                                        <p>Link to Chatbot <a href="<?php echo $toolURL ?>" target="_blank"><img class="image" src="images/robot.svg" alt="Chatbot"></p></a>
+                                        <?php
+                                            }
+                                            else {
+                                        ?>
+                                        <p><a href="<?php echo $toolURL ?>" target="_blank">Link to <?php echo $tool['tool_name'] ?></a></p>
+                                        <?php
+                                            }
+                                        ?>
                                     </div>
-                                    <?php
-                                        }
-                                        else if ($symp_tool['tool_type'] == "link") {
-                                    ?>
-                                    <div class="tool-link row">
-                                        <p><a href="<?php echo $tool_url['tool_url']; ?>">Click here for Link</a></p>
-                                    </div>
-                                    <?php
-                                        }
-                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -107,9 +138,11 @@
                 ?>
             </div>
             <div class="right-column col-md-4 .d-none .d-sm-block">
+                <h4>What is <?php echo $symptom_title['symptom_name']; ?>?</h3>
                 <?php
                     echo $symptom_details['symptom_description'];
                 ?>
+                <p>For more information click the <a href="<?php echo $symptom_info_url['symptom_more_info_link'] ?>" target="_blank">link</a>.</p>
             </div>
         </div>
     </div>
